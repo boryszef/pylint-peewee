@@ -8,7 +8,7 @@ setup(
     author='Hayden Chudy',
     author_email='hjc1710@gmail.com',
     url='https://github.com/hjc1710/pylint-peewee',
-    download_url='',
+    download_url='https://github.com/hjc1710/pylint-peewee/archive/v0.1.0.tar.gz',
     keywords=['peewee', 'pylint', 'plugin',],
     classifiers=[],
 )
