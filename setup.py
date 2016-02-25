@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='pylint-peewee',
-    packages=['pylint-peewee'],
+    py_modules=['pylint-peewee'],
     version='0.1.2',
     description='PyLint extensions for PeeWee',
     author='Hayden Chudy',
