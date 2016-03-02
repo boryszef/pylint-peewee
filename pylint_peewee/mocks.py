@@ -1,8 +1,3 @@
-from astroid import MANAGER
-from astroid import scoped_nodes
-
-def register(linter):
-    pass
 
 
 class DummyQuery(object):
@@ -141,19 +136,3 @@ class DummyInsert(DummyWriteQuery):
 
 class DummyDelete(DummyWriteQuery):
     pass
-
-
-
-def transform(cls):
-    if 'db.Model' in cls.basenames:
-        overrides = {
-            'select': DummySelect,
-            'get': DummySelect,
-            'insert': DummyInsert,
-            'update': DummyUpdate,
-            'delete': DummyDelete,
-        }
-        for key in overrides:
-            cls.locals[key] = [overrides[key]()]
-
-MANAGER.register_transform(scoped_nodes.Class, transform)

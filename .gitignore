@@ -1,2 +1,5 @@
 dist/
 MANIFEST
+*.pyc
+.idea/
+*.iml
