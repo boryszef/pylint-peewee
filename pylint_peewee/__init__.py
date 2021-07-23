@@ -12,9 +12,15 @@ def register(linter):
 def _returns(ret_val):
     return lambda: ret_val
 
+def get_base_classes(cls):
+    module_names = (getattr(mod, 'value', None) for mod in cls.getattr('__module__'))
+    class_names = (klass.name for klass in cls.mro())
+    return tuple(zip(module_names, class_names))
+
 
 def transform(cls):
-    if 'db.Model' in cls.basenames:
+    bases = get_base_classes(cls)
+    if ('peewee', 'Model') in bases:
         overrides = {
             'select': _returns(DummySelect()),
             'get': _returns(DummySelect()),
@@ -30,4 +36,4 @@ def transform(cls):
             cls.locals[key] = [overrides[key]]
 
 
-MANAGER.register_transform(scoped_nodes.Class, transform)
+MANAGER.register_transform(scoped_nodes.ClassDef, transform)
