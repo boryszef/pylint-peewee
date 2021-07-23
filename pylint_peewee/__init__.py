@@ -1,4 +1,4 @@
-from astroid import MANAGER
+from astroid import MANAGER, ClassDef
 from astroid import scoped_nodes
 
 from .mocks import (DummySelect, DummyInsert, DummyDelete, DummyUpdate,
@@ -31,7 +31,7 @@ def transform(cls):
             # missing or just not needed
             'id': DummyPrimaryKeyField(),
             'create': _returns(cls.instantiate_class()),
-            'DoesNotExist': astroid.ClassDef('DoesNotExist', None),
+            'DoesNotExist': ClassDef('DoesNotExist', None),
         }
         for key in overrides:
             cls.locals[key] = [overrides[key]]
