@@ -31,6 +31,7 @@ def transform(cls):
             # missing or just not needed
             'id': DummyPrimaryKeyField(),
             'create': _returns(cls.instantiate_class()),
+            'DoesNotExist': astroid.ClassDef('DoesNotExist', None),
         }
         for key in overrides:
             cls.locals[key] = [overrides[key]]
